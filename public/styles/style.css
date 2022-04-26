@@ -1,0 +1,76 @@
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+body{
+    height: 100vh;
+}
+
+.header {
+    background: #000000;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    padding: 4px;
+    font-family: 'ubuntu', sans-serif;
+}
+
+.control-panel {
+    background: #ffbd59;
+    text-align: right;
+    padding: 4px;
+    font-family: sans-serif;
+}
+
+.languages {
+    background: white;
+    border: 1px solid gray;
+}
+
+#editor { 
+    height: 400px; 
+    max-width: 100%;
+    font-size: 16px;
+    /* word-wrap: break-word; */
+    /* overflow: auto; */
+}
+.ace_content{
+    word-wrap: break-word;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    padding: 6px; 
+    background: #ffbd59;
+}
+
+.btn {
+    background: #57a958;
+    color: white;
+    padding: 8px;
+    border: 0;
+}
+
+.output {
+    color: white;
+    padding: 4px;
+    border: 2px solid #ffbd59;
+    background-color: rgb(39, 40, 35);
+    min-height: 100px;
+    max-height: 280px;
+    height: 32%;
+    width: 100%;
+    resize: none;
+    overflow-x: auto;
+
+}
+
+.submit_btn, .text_output{
+    margin: 0 10px;
+}
+.text_output{
+    margin-top: 5px;
+    font-size: 18px;
+    color: rgb(39, 40, 35);
+}

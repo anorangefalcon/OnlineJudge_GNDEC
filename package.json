@@ -1,0 +1,19 @@
+{
+  "name": "online-judge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon app.js",
+    "start": "node server/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3",
+    "python-shell": "^3.0.1",
+    "shelljs": "^0.8.5"
+  }
+}
