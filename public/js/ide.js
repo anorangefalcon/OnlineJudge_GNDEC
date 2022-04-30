@@ -18,6 +18,10 @@ const changeLanguage = () => {
     }
 }
 
+const clearTerminal=()=>{
+    document.getElementById("terminal").innerHTML=""
+}
+
 const executeCode = async() => {
     try {
         const language = document.getElementById("languages").value;
@@ -38,9 +42,18 @@ const executeCode = async() => {
         const res = await req.json()
 
         // console.log(res);
-        res.output.map((result) => {
+
+        if(res.error){
+            // return document.getElementById("terminal").insertAdjacentHTML("beforeend", `<span class="text-danger">Some error ocurred. Make sure the code is correct and appropriate language is chosen.</span>`)
+            return document.getElementById("terminal").insertAdjacentHTML("beforeend", `<span class="text-danger">Error: ${res.error}</span><br>`)
+        }
+        if(language ==="python"){
+             res.output.map((result) => {
             document.getElementById("terminal").insertAdjacentHTML("beforeend", result + "<br>")
         })
+    }else{
+        document.getElementById("terminal").insertAdjacentHTML("beforeend", res.output + "<br>")
+    }
     } catch (e) {
         console.log(e);
     }

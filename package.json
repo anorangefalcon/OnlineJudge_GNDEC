@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon app.js",
+    "test": "nodemon server/app.js",
     "start": "node server/app.js"
   },
   "keywords": [],
@@ -13,7 +13,6 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "express": "^4.17.3",
-    "python-shell": "^3.0.1",
-    "shelljs": "^0.8.5"
+    "nodemon": "^2.0.15"
   }
 }
