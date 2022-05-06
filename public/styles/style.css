@@ -1,16 +1,12 @@
 *{margin: 0; padding: 0; box-sizing: border-box;}
 
 body{
-    height: 100vh;
+    min-height: 100vh;
 }
 
-.header {
-    background: #000000;
-    text-align: left;
-    font-size: 25px;
+.navbar {
+    background-color: black;
     font-weight: bold;
-    color: white;
-    padding: 4px;
     font-family: 'ubuntu', sans-serif;
 }
 
@@ -27,11 +23,9 @@ body{
 }
 
 #editor { 
-    height: 400px; 
+    height: 500px; 
     max-width: 100%;
     font-size: 16px;
-    /* word-wrap: break-word; */
-    /* overflow: auto; */
 }
 .ace_content{
     word-wrap: break-word;
@@ -54,16 +48,20 @@ body{
 
 .output {
     color: white;
-    padding: 4px;
+    padding-top: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
     border: 2px solid #ffbd59;
     background-color: rgb(39, 40, 35);
-    min-height: 100px;
-    max-height: 280px;
-    height: 32%;
-    width: 100%;
-    resize: none;
-    overflow-x: auto;
+    min-height: 168px;
+}
 
+.inputArea{
+    min-height: 168px;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .submit_btn, .text_output{

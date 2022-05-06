@@ -11,15 +11,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-      <div class="container-fluid">
-
-<nav class="navbar navbar-light bg-black">
-  <a class="" href="#">
-    <img src="/images/logo.png" width="45px"  alt="logo">
-  </a>
+<nav class="navbar navbar-expand-md navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="/images/logo.png" width="45px"  alt="logo">&nbsp;&nbsp;Online Judge</a>
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul> -->
+    </div>
+  </div>
 </nav>
-        <a class="navbar-brand header" href="#" >Online Judge</a>
+        
       </div>
     </nav>
     <div class="control-panel panel panel-default">
@@ -37,12 +47,19 @@
     <div class="button-container">
       <span class="text_output">Output:</span>
       <span>
-      <button class="btn btn-secondary submit_btn" onclick="clearTerminal()">Clear Terminal</button>
-      <button class="btn btn-success submit_btn" onclick="executeCode()"> SUBMIT</button>
+      <button class="btn btn-secondary submit_btn" onclick="clearTerminal()">Clear</button>
+      <button class="btn btn-primary submit_btn" onclick="customInput()">Custom Input</button>
+      <button class="btn btn-success submit_btn" onclick="executeCode(); clearTerminal();">RUN</button>
 </span>
     </div>
 
-    <div class="output" id="terminal"></div>
+    <div class="output" id="terminal">
+      <form id="inputArea">
+        <div>
+          <textarea class="inputArea" placeholder="Enter your Custom Input"></textarea>
+        </div>
+      </form>
+    </div>
 
     <script src="js/lib/ace.js"></script>
     <!-- <script src="js/lib/theme-monokai.js"></script> -->

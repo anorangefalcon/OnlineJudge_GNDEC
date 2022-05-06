@@ -1,10 +1,13 @@
 let editor;
+let ifCustomInputHidden = true;
 
 window.onload = function () {
     editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     // editor.setTheme("ace/theme/xcode");
     editor.session.setMode("ace/mode/c_cpp");
+    //this is visibility of input area:
+    document.getElementById("inputArea").style.display = "none";
 }
 
 const changeLanguage = () => {
@@ -18,11 +21,11 @@ const changeLanguage = () => {
     }
 }
 
-const clearTerminal=()=>{
-    document.getElementById("terminal").innerHTML=""
+const clearTerminal = () => {
+    document.getElementById("terminal").innerHTML = ""
 }
 
-const executeCode = async() => {
+const executeCode = async () => {
     try {
         const language = document.getElementById("languages").value;
 
@@ -43,18 +46,26 @@ const executeCode = async() => {
 
         // console.log(res);
 
-        if(res.error){
+        if (res.error) {
             // return document.getElementById("terminal").insertAdjacentHTML("beforeend", `<span class="text-danger">Some error ocurred. Make sure the code is correct and appropriate language is chosen.</span>`)
             return document.getElementById("terminal").insertAdjacentHTML("beforeend", `<span class="text-danger">Error: ${res.error}</span><br>`)
         }
-        if(language ==="python"){
-             res.output.map((result) => {
-            document.getElementById("terminal").insertAdjacentHTML("beforeend", result + "<br>")
-        })
-    }else{
-        document.getElementById("terminal").insertAdjacentHTML("beforeend", res.output + "<br>")
-    }
+        console.log(res.output);
+        const elem = document.createElement("pre")
+        elem.innerHTML = `${res.output}` + "<br>"
+        document.getElementById("terminal").insertAdjacentElement("beforeend", elem)
     } catch (e) {
         console.log(e);
+    }
+}
+
+//custom input function:
+const customInput = async () => {
+    if (ifCustomInputHidden == true) {
+        document.getElementById("inputArea").style.display = "block";
+        ifCustomInputHidden = false;
+    } else {
+        document.getElementById("inputArea").style.display = "none";
+        ifCustomInputHidden = true;
     }
 }

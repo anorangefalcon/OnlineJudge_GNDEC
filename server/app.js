@@ -28,15 +28,34 @@ app.post("/compiler", async (req, res) => {
                     console.log(err);
                     return res.json({ error: stderr })
                 }
-
-                console.log(output);
-                res.json({ output })
+                console.log(stdout);
+                res.json({ output: stdout })
             })
         }
-        if (language === "cpp" || language === "c") {
+        if (language === "cpp") {
             const outfile = `./server/uploads/execFiles/${rand}.out`
 
             execFile("g++", [filename, "-o", outfile], (err, stdout, stderr) => {
+                console.log(stdout);
+                if (stderr) {
+                    console.log(stderr);
+                    return res.json({ error: stderr })
+                } else {
+                    return execFile(`./${outfile}`, (err, output, stderr) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(output);
+                            res.json({ output })
+                        }
+                    })
+                }
+            })
+        }
+        if (language === "c") {
+            const outfile = `./server/uploads/execFiles/${rand}.out`
+
+            execFile("gcc", [filename, "-o", outfile], (err, stdout, stderr) => {
                 console.log(stdout);
                 if (stderr) {
                     console.log(stderr);
