@@ -1,5 +1,6 @@
 let editor;
 let ifCustomInputHidden = true;
+let change = false ;
 
 window.onload = function () {
     editor = ace.edit("editor");
@@ -69,3 +70,26 @@ const customInput = async () => {
         ifCustomInputHidden = true;
     }
 }
+
+
+
+const sunMoonContainer = document.querySelector('.sun-moon-container')
+
+   document.querySelector('.theme-toggle-button').addEventListener('click', () => {
+
+    if(change == true)
+    {
+        document.body.classList.toggle('dark');
+        editor.setTheme("ace/theme/monokai");
+        change = false;
+    }
+    else
+    {
+        document.body.classList.toggle('dark');
+        editor.setTheme("ace/theme/xcode");
+        change = true;
+    }
+ const currentRotation = parseInt(getComputedStyle(sunMoonContainer).getPropertyValue('--rotation'))
+ sunMoonContainer.style.setProperty('--rotation', currentRotation + 180)
+})
+
