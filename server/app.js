@@ -3,6 +3,7 @@ const app = express()
 const fs = require("fs")
 const bodyParser = require('body-parser')
 const { execFile } = require("child_process")
+const path = require("path")
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -18,11 +19,12 @@ app.post("/compiler", async (req, res) => {
             python: "py"
         }
 
-        const filename = __dirname + "/uploads/" + rand + "." + extensions[language]
+        const filename = path.join(__dirname, "/uploads/") + rand + "." + extensions[language]
         const file = await fs.promises.writeFile(filename, code);
 
         if (language === "python") {
-            execFile("python3", [filename], (err, stdout, stderr) => {
+            // execFile("python3", ["cat","/Users/anorangefalcon/Desktop/OJ G50/server/uploads/execFiles/inputHunBhai.txt", "|", "python3", filename], (err, stdout, stderr) => {
+            execFile("cat", [path.join(__dirname, "/uploads/inputHunBhai.txt"), "|", "python3", filename], { "shell": true }, (err, stdout, stderr) => {
                 if (stderr) {
                     console.log(stderr);
                     console.log(err);
@@ -41,7 +43,9 @@ app.post("/compiler", async (req, res) => {
                     console.log(stderr);
                     return res.json({ error: stderr })
                 } else {
-                    return execFile(`./${outfile}`, (err, output, stderr) => {
+                    // return execFile(`./${outfile}`, (err, output, stderr) => {
+                    return execFile(`./${outfile}`, ["<", "./server/uploads/execFiles/inputHunBhai.txt"], { shell: true }, (err, output, stderr) => {
+                        console.log(stderr);
                         if (err) {
                             console.log(err);
                         } else {
@@ -61,7 +65,7 @@ app.post("/compiler", async (req, res) => {
                     console.log(stderr);
                     return res.json({ error: stderr })
                 } else {
-                    return execFile(`./${outfile}`, (err, output, stderr) => {
+                    return execFile(`./${outfile}`, ["<", "./server/uploads/execFiles/inputHunBhai.txt"], { shell: true }, (err, output, stderr) => {
                         if (err) {
                             console.log(err);
                         } else {

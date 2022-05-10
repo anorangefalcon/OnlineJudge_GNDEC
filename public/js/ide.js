@@ -6,8 +6,6 @@ window.onload = function () {
     editor.setTheme("ace/theme/monokai");
     // editor.setTheme("ace/theme/xcode");
     editor.session.setMode("ace/mode/c_cpp");
-    //this is visibility of input area:
-    document.getElementById("inputArea").style.display = "none";
 }
 
 const changeLanguage = () => {
@@ -27,8 +25,9 @@ const clearTerminal = () => {
 
 const executeCode = async () => {
     try {
+        clearTerminal()
         const language = document.getElementById("languages").value;
-
+        // const customInput = document.getElementById("text_input").value;
         const req = await fetch("/compiler", {
             method: "POST",
 
@@ -60,12 +59,13 @@ const executeCode = async () => {
 }
 
 //custom input function:
-const customInput = async () => {
-    if (ifCustomInputHidden == true) {
-        document.getElementById("inputArea").style.display = "block";
-        ifCustomInputHidden = false;
-    } else {
-        document.getElementById("inputArea").style.display = "none";
-        ifCustomInputHidden = true;
+const customInput = () => {
+    document.getElementById("inputArea").classList.toggle("d-none")
+    document.getElementById("terminal").classList.toggle("d-none")
+
+    if(document.getElementById("text_output").innerText === "OUTPUT:"){
+        document.getElementById("text_output").innerText = ""
+    }else{
+        document.getElementById("text_output").innerText = "OUTPUT:";
     }
 }
