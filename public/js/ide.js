@@ -28,14 +28,17 @@ const executeCode = async () => {
     try {
         clearTerminal()
         const language = document.getElementById("languages").value;
-        // const customInput = document.getElementById("text_input").value;
+        const customInput = document.getElementById("customInput").value;
+        console.log(customInput);
+        // if(customInput) console.log(customInput);
         const req = await fetch("/compiler", {
             method: "POST",
 
             // Adding body or contents to send
             body: JSON.stringify({
                 language,
-                code: editor.getSession().getValue()
+                code: editor.getSession().getValue(),
+                customInput
             }),
 
             headers: {
@@ -44,10 +47,7 @@ const executeCode = async () => {
         })
         const res = await req.json()
 
-        // console.log(res);
-
         if (res.error) {
-            // return document.getElementById("terminal").insertAdjacentHTML("beforeend", `<span class="text-danger">Some error ocurred. Make sure the code is correct and appropriate language is chosen.</span>`)
             return document.getElementById("terminal").insertAdjacentHTML("beforeend", `<span class="text-danger">Error: ${res.error}</span><br>`)
         }
         console.log(res.output);
@@ -72,7 +72,7 @@ const customInput = () => {
 }
 
 
-
+//light - dark mode implementation:
 const sunMoonContainer = document.querySelector('.sun-moon-container')
 
    document.querySelector('.theme-toggle-button').addEventListener('click', () => {

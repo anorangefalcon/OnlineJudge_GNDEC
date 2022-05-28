@@ -11,7 +11,8 @@ app.use(bodyParser.json())
 
 app.post("/compiler", async (req, res) => {
     try {
-        const { language, code } = req.body
+        const { language, code,  customInput} = req.body
+        console.log(customInput);
         const rand = Math.floor(Math.random() * 100)
         const extensions = {
             c: "c",
@@ -20,7 +21,14 @@ app.post("/compiler", async (req, res) => {
         }
 
         const filename = path.join(__dirname, "/uploads/") + rand + "." + extensions[language]
-        const file = await fs.promises.writeFile(filename, code);
+ await fs.promises.writeFile(filename, code);
+
+// create custom input file if custom input is there 
+let inputFile = "./server/uploads/execFiles/inputHunBhai.txt"
+if(customInput){
+    await fs.promises.writeFile(__dirname + "/uploads/execFiles/customInput.txt", customInput);
+    inputFile = "./server/uploads/execFiles/customInput.txt"
+}
 
         if (language === "python") {
             // execFile("python3", ["cat","/Users/anorangefalcon/Desktop/OJ G50/server/uploads/execFiles/inputHunBhai.txt", "|", "python3", filename], (err, stdout, stderr) => {
@@ -44,7 +52,7 @@ app.post("/compiler", async (req, res) => {
                     return res.json({ error: stderr })
                 } else {
                     // return execFile(`./${outfile}`, (err, output, stderr) => {
-                    return execFile(`./${outfile}`, ["<", "./server/uploads/execFiles/inputHunBhai.txt"], { shell: true }, (err, output, stderr) => {
+                    return execFile(`./${outfile}`, ["<", inputFile], { shell: true }, (err, output, stderr) => {
                         console.log(stderr);
                         if (err) {
                             console.log(err);
@@ -65,7 +73,7 @@ app.post("/compiler", async (req, res) => {
                     console.log(stderr);
                     return res.json({ error: stderr })
                 } else {
-                    return execFile(`./${outfile}`, ["<", "./server/uploads/execFiles/inputHunBhai.txt"], { shell: true }, (err, output, stderr) => {
+                    return execFile(`./${outfile}`, ["<", inputFile], { shell: true }, (err, output, stderr) => {
                         if (err) {
                             console.log(err);
                         } else {
