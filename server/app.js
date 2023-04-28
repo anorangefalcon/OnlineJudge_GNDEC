@@ -4,12 +4,84 @@ const fs = require("fs")
 const bodyParser = require('body-parser')
 const { execFile } = require("child_process")
 const path = require("path")
+const cookieParser = require("cookie-parser")
+const jwt = require("jsonwebtoken")
+
+const secretKey="hjuikoijuihjgolp;hgfhop;gf"
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.post("/compiler", async (req, res) => {
+// for post requests
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
+// use cookie parser 
+app.use(cookieParser())
+
+const loggedInNext = async (req, res, next) => {
+    try {
+        const cookie = req.cookies.user
+        const verify = jwt.verify(cookie, secretKey)
+
+     verify.user === "priyanshu1915341@gndec.ac.in" || verify.user === "payal1915338@gndec.ac.in" || verify.user === "devansh1915307@gndec.ac.in" ? next() : res.redirect("/login")
+    } catch (e) {
+        res.redirect("/login")
+    }
+}
+
+const loggedInRedirect = async (req, res, next) => {
+    try {
+        const cookie = req.cookies.user
+        const verify = jwt.verify(cookie, secretKey)
+
+      verify.user === "priyanshu1915341@gndec.ac.in" || verify.user === "payal1915338@gndec.ac.in" || verify.user === "devansh1915307@gndec.ac.in" ? res.redirect("/") : next()
+    } catch (e) {
+        next()
+    }
+}
+
+app.get("/login",loggedInRedirect,(req, res)=>{
+    res.render("login.ejs")
+})
+app.get("/", loggedInNext, (req, res)=>{
+    res.render("index.ejs")
+})
+app.get("/index.html", loggedInNext, (req, res)=>{
+    res.render("index.ejs")
+})
+app.get("/contests.html", loggedInNext, (req, res)=>{
+    res.render("contests.ejs")
+})
+app.get("/QuesFact.html", loggedInNext, (req, res)=>{
+    res.render("QuesFact.ejs")
+})
+app.get("/QuesPalindrome.html", loggedInNext, (req, res)=>{
+    res.render("QuesPalindrome.ejs")
+})
+
+app.post("/login", async (req, res) => {
+    try {
+      if ((req.body.user === "priyanshu1915341@gndec.ac.in" && req.body.password === "1234") || (req.body.user === "payal1915338@gndec.ac.in" && req.body.password === "0000") || (req.body.user === "devansh1915307@gndec.ac.in" && req.body.password === "0000")) {
+            const cookie = jwt.sign({ user: req.body.user }, secretKey)
+            res.cookie("user", cookie, {
+                expires: new Date(Date.now() + (6 * 60 * 60 * 1000)), //expires after 6 hours
+                httpOnly: true
+            }).redirect("/")
+        } else {
+            res.send(`<script>
+            const c = confirm("Wrong Details")
+
+            c == true ? window.location.href="/login" : window.location.href="/login"
+            </script>`)
+        }
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
+app.post("/compiler", loggedInNext, async (req, res) => {
     try {
         const { language, code, customInput, submit } = req.body
         console.log(customInput);
@@ -42,6 +114,9 @@ app.post("/compiler", async (req, res) => {
                 res.json({ output: stdout })
             })
         }
+
+
+
         let inputFiles = ["input1.txt", "input2.txt", "input3.txt"]
         let outputFiles = ["output1.txt", "output2.txt", "output3.txt"]
         if (language === "cpp") {
@@ -137,20 +212,45 @@ app.post("/submit-ques", async (req, res) => {
         if (customInput) {
             await fs.promises.writeFile(__dirname + "/uploads/execFiles/customInput.txt", customInput);
             inputFile = "./server/uploads/execFiles/customInput.txt"
+            await fs.promises.writeFile(__dirname + "/uploads/execFiles/inputHunBhai.txt", customInput);
         }
 
-        if (language === "python") {
-            // execFile("python3", ["cat","/Users/anorangefalcon/Desktop/OJ G50/server/uploads/execFiles/inputHunBhai.txt", "|", "python3", filename], (err, stdout, stderr) => {
-            execFile("cat", [path.join(__dirname, "/uploads/inputHunBhai.txt"), "|", "python3", filename], { "shell": true }, (err, stdout, stderr) => {
-                if (stderr) {
-                    console.log(stderr);
-                    console.log(err);
-                    return res.json({ error: stderr })
-                }
-                console.log(stdout);
-                res.json({ output: stdout })
-            })
+        // if (language === "python") {
+        //     // execFile("python3", ["cat","/Users/anorangefalcon/Desktop/OJ G50/server/uploads/execFiles/inputHunBhai.txt", "|", "python3", filename], (err, stdout, stderr) => {
+        //     execFile("cat", [path.join(__dirname, "/uploads/inputHunBhai.txt"), "|", "python3", filename], { "shell": true }, (err, stdout, stderr) => {
+        //         if (stderr) {
+        //             console.log(stderr);
+        //             console.log(err);
+        //             return res.json({ error: stderr })
+        //         }
+        //         console.log(stdout);
+        //         res.json({ output: stdout })
+        //     })
+        // }
+        
+        if (language == "python") {
+            const { spawn } = require('child_process');
+            const cat = spawn("cat", [path.join(__dirname, "/uploads/inputHunBhai.txt")]);
+            const python = spawn("python3", [filename]);
+        
+            cat.stdout.pipe(python.stdin);
+        
+            python.stdout.on("data", (data) => {
+                console.log(data.toString());
+                res.json({ output: data.toString() });
+            });
+        
+            python.stderr.on("data", (data) => {
+                console.log(data.toString());
+                res.json({ error: data.toString() });
+            });
+        
+            python.on("error", (err) => {
+                console.log(err);
+                res.json({ error: "Failed to execute Python script" });
+            });
         }
+        
         if (language === "cpp") {
             const outfile = `./server/uploads/execFiles/${rand}.out`
 
