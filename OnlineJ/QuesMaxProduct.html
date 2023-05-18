@@ -11,9 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
-
-
-    <script src="js/ide.js"></script>
 </head>
 
 <body>
@@ -42,25 +39,35 @@
     <main class="container-fluid p-0">
         <div class="row">
             <section class="col-lg-6 text-center">
+                <!-- <div style="padding: 30px 20px 15px 29px"  align="justify" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate accusamus dolorum explicabo, quisquam autem alias aliquid molestias iusto vel consequatur veniam temporibus sapiente eius expedita dolorem minima provident aliquam corrupti.</div> -->
                 <div class="text-start p-5">
-                    <h3>Palindrome Check</h3>
-                    <h6>ID: #<span id="quesId">2</span>_strings</h6>
-                    <div><code>Easy</code></div>
+                    <h3>Maximum product of indexes of next greater on left and right</h3>
+                    <h6>ID: #1_maths</h6>
+                    <div><code>Hard
+                    </code></div>
                     <br>
-                    Write a program to check if a given string is a palindrome or not. A palindrome is a string that reads the same backwards as forwards.
-                    <br><br>
+                    Given an array a[1..N]. For each element at position i (1 <= i <= N). Where 
+
+L(i) is defined as closest index j such that j < i and a[j] > a[i]. If no such j exists then L(i) = 0.
+R(i) is defined as closest index k such that k > i and a[k] > a[i]. If no such k exists then R(i) = 0.
+LRProduct(i) = L(i)*R(i) . 
+We need to find an index with maximum LRProduct                 <br><br>
                     For Example:
-                    <p><code class="cpp hljs"> <span class="hljs-string">'racecar'</span>
-                    <br>
-                    is a palindrome because it reads the same backwards as forwards.
+                    
                     </code></p>
-                    <p>Now make a program that takes a string as input and returns whether or not it is a palindrome.</p>
-                    <p>Sample input : <code>'radar'</code><br>
-                    Expected output : <code>true</code>
+                    <p>Input : 1 1 1 1 0 1 1 1 1 1    <code><br>Output : 24  <br> 
+                        For {1, 1, 1, 1, 0, 1, 1, 1, 1, 1} all element are same except 0. So only for zero their exist greater element and for others it will be zero. for zero, on left 4th element is closest and greater than zero and on right 6th element is closest and greater. so maximum 
+product will be 4*6 = 24.
+
+]</code><br>
+Input : 5 4 3 4 5   <code><br>Output: 8 <br>For {5, 4, 3, 4, 5}, L[] = {0, 1, 2, 1, 0} and R[] 
+    = {0, 5, 4, 5, 0}, 
+    LRProduct = {0, 5, 8, 5, 0} and max in this is 8.  </code>
                     </p>
-                    <p>Tags : Strings</p>
+                    <p>Tags : Arrays, DSA, Stack</p>
                 </div>
             </section>
+
             <section class="col-lg-6 m-0 p-0">
                 <div class="control-panel panel panel-default">
                     <!--theme -->
@@ -103,8 +110,8 @@
                     <span>
                         <!-- <button class="btn btn-secondary submit_btn" onclick="clearTerminal()">Clear</button> -->
                         <button class="btn btn-primary submit_btn" onclick="customInput()">Custom Input</button>
-                        <button class="btn btn-success submit_btn" onclick="executeCode(false, '2', '1')">RUN</button>
-                        <button class="btn btn-success submit_btn" onclick="executeCode(true, '2', '1')">SUBMIT</button>
+                        <button class="btn btn-success submit_btn" onclick="executeCode(false, '6', '1')">RUN</button>
+                        <button class="btn btn-success submit_btn" onclick="executeCode(true, '6', '1')">SUBMIT</button>
                     </span>
                 </div>
 
@@ -120,6 +127,7 @@
     </main>
     <script src="js/lib/ace.js"></script>
     <!-- <script src="js/lib/theme-monokai.js"></script> -->
+    <script src="js/ide.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -127,28 +135,71 @@
 
 </html>
 
-<!-- #include <bits/stdc++.h>
+<!-- #include <iostream>
+#include <stack>
 using namespace std;
- 
-string isPalindrome(string S)
-{
-    string P = S;
- 
-    reverse(P.begin(), P.end());
- 
-    if (S == P) {
-        return "Yes";
-    }
-    else {
-        return "No";
+
+stack<int> mystack;
+
+// To find greater element to left
+void nextGreaterToLeft(int arr[], int res[], int N) {
+    mystack.push(0);
+    res[0] = 0;
+
+    // iterate through the array
+    for (int i = 1; i < N; i++) {
+        while (mystack.size() > 0 && arr[mystack.top()] <= arr[i])
+            mystack.pop();
+
+        // place the index to the left in the resultant array
+        res[i] = (mystack.size() == 0) ? 0 : mystack.top() + 1;
+        mystack.push(i);
     }
 }
- 
-int main()
-{
-    string S = "";
-    cin>>S;
-    cout << isPalindrome(S);
- 
+
+//// To find greater element to right
+void nextGreaterToRight(int arr[], int res[], int N) {
+    mystack = stack<int>();
+
+    int n = N;
+    mystack.push(n - 1);
+    res[n - 1] = 0;
+
+    // iterate through the array in reverse order
+    for (int i = n - 2; i >= 0; i--) {
+        while (mystack.size() > 0 && arr[mystack.top()] <= arr[i])
+            mystack.pop();
+
+        // multiply the index to the right with the index to the left
+        // in the resultant array
+        res[i] = (mystack.size() == 0) ? res[i] * 0 : res[i] * (mystack.top() + 1);
+        mystack.push(i);
+    }
+}
+
+// function to return the max value in the resultant array
+int maxProduct(int arr[], int res[], int N) {
+    nextGreaterToLeft(arr, res, N);     // to find left max
+    nextGreaterToRight(arr, res, N);    // to find right max
+
+    int Max = res[0];
+    for (int i = 1; i < N; i++) {
+        Max = max(Max, res[i]);
+    }
+    return Max;
+}
+
+int main() {
+    int size;
+    cin >> size;
+    int arr[size];
+    for (int i = 0; i < size; ++i) {
+        cin >> arr[i];
+    }
+
+    int res[size];
+    int maxprod = maxProduct(arr, res, size);
+    cout << maxprod;
+
     return 0;
 } -->

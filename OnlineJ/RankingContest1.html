@@ -16,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.html"><img src="/images/logo.png" width="45px" alt="logo">&nbsp;&nbsp;Ongoing Contests</a>
+      <a class="navbar-brand" href="home.html"><img src="/images/logo.png" width="45px" alt="logo">&nbsp;&nbsp;Contest 1 Rankings</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,48 +27,51 @@
             <a class="nav-link" aria-current="page" href="index.html">IDE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="contests.html">Contests</a>
+            <a class="nav-link" href="contests.html">Contests</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  </div>
-  </nav>
-  <table class="table">
-    <thead>
-      <tr bgcolor="#ffbd59">
-        <th scope="col">#</th>
-        <th scope="col">Contest's Name</th>
-        <th scope="col">Dated</th>
-        <th scope="col">Ranks</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td><a class="link-dark" rel="stylesheet" href="Contest1.html">GNDEC's First ever coding Contest !</td>
-          <td>06/05/2023</td>
-          <td><a class="link-success" rel="stylesheet" href="RankingContest1.html">Rankings</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Ain't Cooked Yet</td>
-        <td>Coming Soon!</td>
-        <td>N/A</td>
-      </tr>
-     <tr>
+
+  <div>
+    <!-- <table class="table">
+      <thead>
+        <tr bgcolor="#ffbd59">
+          <th scope="col">Rank</th>
+          <th scope="col">User-ID</th>
+          <th scope="col">Score</th>
+        </tr>
+      </thead>
+      <tbody id="ranking-body">
+      </tbody>
+    </table> -->
+    <table class="table">
+      <thead>
+        <tr bgcolor="#ffbd59">
+          <th scope="col">Rank</th>
+          <th scope="col">User-ID</th>
+          <th scope="col">Score</th>
+        </tr>
+      </thead>
+    <tbody id="ranking-body">
+      <% rankingData.forEach((row, index)=> { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= row.email %></td>
+          <td><%= row.totalScore %></td>
+        </tr>
+      <% }); %>
     </tbody>
   </table>
   </div>
-  </nav>
 
   <script src="js/lib/ace.js"></script>
-  <!-- <script src="js/lib/theme-monokai.js"></script> -->
   <script src="js/ide.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
+  <script src="js/ranking.js"></script>
 </body>
 
 </html>

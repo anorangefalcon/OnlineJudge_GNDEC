@@ -11,9 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
-
-
-    <script src="js/ide.js"></script>
 </head>
 
 <body>
@@ -42,25 +39,29 @@
     <main class="container-fluid p-0">
         <div class="row">
             <section class="col-lg-6 text-center">
+                <!-- <div style="padding: 30px 20px 15px 29px"  align="justify" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate accusamus dolorum explicabo, quisquam autem alias aliquid molestias iusto vel consequatur veniam temporibus sapiente eius expedita dolorem minima provident aliquam corrupti.</div> -->
                 <div class="text-start p-5">
-                    <h3>Palindrome Check</h3>
-                    <h6>ID: #<span id="quesId">2</span>_strings</h6>
-                    <div><code>Easy</code></div>
+                    <h3>Length of the longest valid substring</h3>
+                    <h6>ID: #1_maths</h6>
+                    <div><code>Hard</code></div>
                     <br>
-                    Write a program to check if a given string is a palindrome or not. A palindrome is a string that reads the same backwards as forwards.
+                    Given a string consisting of opening and closing parenthesis, find the length of the longest valid parenthesis substring.
+
                     <br><br>
                     For Example:
-                    <p><code class="cpp hljs"> <span class="hljs-string">'racecar'</span>
+                    <!-- <p><code class="cpp hljs"> <span class="hljs- number">6! = 6 * 5 * 4 * 3 * 2 * 1</span>
                     <br>
-                    is a palindrome because it reads the same backwards as forwards.
+                    ie : 720 -->
                     </code></p>
-                    <p>Now make a program that takes a string as input and returns whether or not it is a palindrome.</p>
-                    <p>Sample input : <code>'radar'</code><br>
-                    Expected output : <code>true</code>
+                    <!-- <p>Now make a program that takes a number as input 'n' and returns output as factorial of n that is n! Given that n is a positive number.</p> -->
+                    <p>Input: ((()    <code><br>Output: 2 <br> 
+                        Explanation : ()</code><br>
+                        Input: )()())   <code><br>Output: 4 <br> Explanation: ()()  </code>
                     </p>
-                    <p>Tags : Strings</p>
+                    <p>Tags : Dynamic Programming, Stack, Data Structure, Strings</p>
                 </div>
             </section>
+
             <section class="col-lg-6 m-0 p-0">
                 <div class="control-panel panel panel-default">
                     <!--theme -->
@@ -103,8 +104,8 @@
                     <span>
                         <!-- <button class="btn btn-secondary submit_btn" onclick="clearTerminal()">Clear</button> -->
                         <button class="btn btn-primary submit_btn" onclick="customInput()">Custom Input</button>
-                        <button class="btn btn-success submit_btn" onclick="executeCode(false, '2', '1')">RUN</button>
-                        <button class="btn btn-success submit_btn" onclick="executeCode(true, '2', '1')">SUBMIT</button>
+                        <button class="btn btn-success submit_btn" onclick="executeCode(false, '5', '1')">RUN</button>
+                        <button class="btn btn-success submit_btn" onclick="executeCode(true, '5', '1')">SUBMIT</button>
                     </span>
                 </div>
 
@@ -120,6 +121,7 @@
     </main>
     <script src="js/lib/ace.js"></script>
     <!-- <script src="js/lib/theme-monokai.js"></script> -->
+    <script src="js/ide.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -127,28 +129,94 @@
 
 </html>
 
-<!-- #include <bits/stdc++.h>
+<!-- #include <iostream>
+#include <stack>
 using namespace std;
- 
-string isPalindrome(string S)
+
+int findMaxLen(string str)
 {
-    string P = S;
- 
-    reverse(P.begin(), P.end());
- 
-    if (S == P) {
-        return "Yes";
+    int n = str.length();
+
+    // Create a stack and push -1 as
+    // initial index to it.
+    stack<int> stk;
+    stk.push(-1);
+
+    // Initialize result
+    int result = 0;
+
+    // Traverse all characters of given string
+    for (int i = 0; i < n; i++)
+    {
+        // If opening bracket, push index of it
+        if (str[i] == '(')
+            stk.push(i);
+        
+        // If closing bracket, i.e.,str[i] = ')'
+        else
+        {
+            // Pop the previous opening
+            // bracket's index
+            if (!stk.empty())
+            {
+                stk.pop();
+            }
+            
+            // Check if this length formed with base of
+            // current valid substring is more than max
+            // so far
+            if (!stk.empty())
+                result = max(result, i - stk.top());
+
+            // If stack is empty. push current index as
+            // base for next valid substring (if any)
+            else
+                stk.push(i);
+        }
     }
-    else {
-        return "No";
-    }
+
+    return result;
 }
- 
+
+// Driver code
 int main()
 {
-    string S = "";
-    cin>>S;
-    cout << isPalindrome(S);
- 
+    string str;
+    cin >> str;
+    // Function call
+    cout << findMaxLen(str);
+
+    
+
     return 0;
 } -->
+
+
+
+<!-- def longest_valid_substring(s):
+    stack = []
+    max_length = 0
+    start = -1
+
+    for i in range(len(s)):
+        if s[i] == '(':
+            stack.append(i)
+        else:
+            if stack:
+                stack.pop()
+                if stack:
+                    max_length = max(max_length, i - stack[-1])
+                else:
+                    max_length = max(max_length, i - start)
+            else:
+                start = i
+
+    return max_length
+
+# Example usage
+input1 = input()
+print(longest_valid_substring(input1))  # Output: 2
+
+# input2 = ")()())"
+# print(longest_valid_substring(input2))  # Output: 4
+ -->
