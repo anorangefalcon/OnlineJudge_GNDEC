@@ -24,18 +24,21 @@ const clearTerminal = () => {
     document.getElementById("terminal").innerHTML = ""
 }
 
-const executeCode = async (submit) => {
+const executeCode = async (submit, quesId, contestId) => {
     try {
         clearTerminal()
         const language = document.getElementById("languages").value;
         const customInput = document.getElementById("customInput").value;
         console.log(customInput);
         // if(customInput) console.log(customInput);
+
         const req = await fetch("/compiler", {
             method: "POST",
 
             // Adding body or contents to send
             body: JSON.stringify({
+                quesId,
+                contestId,
                 language,
                 code: editor.getSession().getValue(),
                 customInput,

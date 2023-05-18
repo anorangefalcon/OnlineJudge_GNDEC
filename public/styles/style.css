@@ -53,6 +53,15 @@ body{
     padding: 6px; 
     background: #ffbd59;
 }
+.btn-OJorange {
+  display:flex;
+  color:#000000;
+  text-decoration: none;
+  font-size: 20px;
+  justify-content:space-around;
+  padding: 9px; 
+  background: #ffbd59;
+}
 
 .btn {
     background: #57a958;
@@ -172,4 +181,50 @@ fill: var(--accent-color);
 
 .dark .moon {
   opacity: 1;
+}
+
+.hero-section {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  padding: 60px 0;
+}
+
+.hero-section h1 {
+  font-size: 86px;
+  margin-bottom: 30px;
+  color: #ffbd59;
+}
+.hero-section h2 {
+  font-size: 66px;
+  margin-bottom: 0px;
+  color: #ffffff;
+}
+
+.hero-section p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  text-align: justify;
+}
+
+.features-section {
+  padding: 60px 0;
+}
+
+.feature {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.feature img {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.feature h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 16px;
 }
