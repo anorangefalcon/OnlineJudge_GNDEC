@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="/images/logo.png" width="45px" alt="logo">&nbsp;&nbsp;Online
+            <a class="navbar-brand" href="home.html"><img src="/images/logo.png" width="45px" alt="logo">&nbsp;&nbsp;Online
                 Judge</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -42,7 +42,7 @@
                 <!-- <div style="padding: 30px 20px 15px 29px"  align="justify" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate accusamus dolorum explicabo, quisquam autem alias aliquid molestias iusto vel consequatur veniam temporibus sapiente eius expedita dolorem minima provident aliquam corrupti.</div> -->
                 <div class="text-start p-5">
                     <h3>Simple Factorial</h3>
-                    <h6>ID: #1_maths</h6>
+                    <h6>ID: #<span id="quesId">1</span>_maths</h6>
                     <div><code>Easy</code></div>
                     <br>
                     We all learned how to find factorial in school, applying the same mathematical knowlege and coding
@@ -84,13 +84,14 @@
                     </div>
 
                     <label for="languages">
-                        Languages : &nbsp;
+                    ;      Languages : &nbsp;
                     </label>
                     &nbsp;
                     <select id="languages" class="languages" name="languages" onchange="changeLanguage()">
                         <option value="c"> C </option>
                         <option value="cpp"> C++ </option>
                         <option value="python"> Python </option>
+                        <option value="java"> Java </option>
                     </select>
                     &nbsp;&nbsp;
 
@@ -102,8 +103,9 @@
                     <span>
                         <!-- <button class="btn btn-secondary submit_btn" onclick="clearTerminal()">Clear</button> -->
                         <button class="btn btn-primary submit_btn" onclick="customInput()">Custom Input</button>
-                        <button class="btn btn-success submit_btn" onclick="executeCode()">RUN</button>
-                        <button class="btn btn-success submit_btn" onclick="executeCode(true)">SUBMIT</button>
+                        <!-- returns questionId and ContestId -->
+                        <button class="btn btn-success submit_btn" onclick="executeCode(false, '1','1')">RUN</button>
+                        <button class="btn btn-success submit_btn" onclick="executeCode(true, '1','1')">SUBMIT</button>
                     </span>
                 </div>
 
@@ -128,21 +130,31 @@
 </html>
 
 <!-- 
-    #include <iostream>
-    using namespace std;
+#include <iostream>
+using namespace std;
 
-    unsigned int factorial(unsigned int n)
-    {
-        if (n == 0)
-            return 1;
-        return n * factorial(n - 1);
-    }
+unsigned int factorial(unsigned int n)
+{
+    if (n == 0)
+        return 1;
+    return n * factorial(n - 1);
+}
 
-    int main()
-    {
-        int num;
-        cin >> num;
-        cout << factorial(num);
-        return 0;
-    } 
+int main()
+{
+    int num;
+    cin >> num;
+    cout << factorial(num);
+    return 0;
+} 
 -->
+<!-- 
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+input_number = int(input())
+result = factorial(input_number)
+print(result) -->
