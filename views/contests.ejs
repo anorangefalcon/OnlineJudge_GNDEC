@@ -24,17 +24,29 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html">IDE</a>
+            <a class="nav-link" aria-current="page" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">IDE</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="contests.html">Contests</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="userId"><%= user %></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <!-- <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider"></li> -->
+              <li><a class="dropdown-item" href="/logout" id="signOutBtn">Sign-Out</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
-  </nav>
-  </div>
-  </nav>
+    </nav>
+
   <table class="table">
     <thead>
       <tr bgcolor="#ffbd59">
