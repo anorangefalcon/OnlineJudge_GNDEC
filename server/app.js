@@ -19,7 +19,8 @@ const connection = mysql.createConnection({
   user: 'root',
   // password: {demo},
   // database: {demo},
-  
+     
+  database: 'onlinejudge',
   insecureAuth: true,
   authPlugins: {
     mysql_native_password: false
@@ -86,8 +87,8 @@ app.get("/index.html", loggedInNext, (req, res) => {
 app.get("/login.html", loggedInNext, (req, res) => {
   res.render("login.ejs")
 })
-app.get("/Contests.html", loggedInNext, (req, res) => {
-  res.render("Contests.ejs", {user: req.user})
+app.get("/contests.html", loggedInNext, (req, res) => {
+  res.render("contests.ejs", {user: req.user})
 })
 app.get("/QuesFact.html", loggedInNext, (req, res) => {
   res.render("QuesFact.ejs", {user: req.user})
