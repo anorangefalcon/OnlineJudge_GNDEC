@@ -24,44 +24,55 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html">IDE</a>
+            <a class="nav-link" aria-current="page" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">IDE</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contests.html">Contests</a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/logout">Sign-Out</a>
+          </li> -->
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="user"> <%= user %></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="/logout" id="signOutBtn">Sign-Out</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
-  </nav>
+    </nav>
 
   <div>
-    <!-- <table class="table">
-      <thead>
-        <tr bgcolor="#ffbd59">
-          <th scope="col">Rank</th>
-          <th scope="col">User-ID</th>
-          <th scope="col">Score</th>
-        </tr>
-      </thead>
-      <tbody id="ranking-body">
-      </tbody>
-    </table> -->
     <table class="table">
       <thead>
         <tr bgcolor="#ffbd59">
           <th scope="col">Rank</th>
-          <th scope="col">User-ID</th>
+          <th scope="col">E-Mail</th>
           <th scope="col">Score</th>
         </tr>
       </thead>
-    <tbody id="ranking-body">
-      <% rankingData.forEach((row, index)=> { %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= row.email %></td>
-          <td><%= row.totalScore %></td>
-        </tr>
-      <% }); %>
+      <tbody id="ranking-body">
+        <% rankingData.forEach((row, index)=> {
+            if (row.email == user) { %>
+              <tr style="border: 2px solid #ffbd59; font-weight: bold;">
+                <!-- <tr bgcolor="#fadbae", font-weight: bold;> -->
+            <% } else { %>
+              <tr>
+            <% } %>
+              <td><%= index + 1 %></td>
+              <td><%= row.email %></td>
+              <td><%= row.totalScore %></td>
+            </tr>
+        <% }); %>
+      </tbody>
+      
     </tbody>
   </table>
   </div>

@@ -26,11 +26,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">IDE</a>
+                        <a class="nav-link" aria-current="page" href="home.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contests.html">Contests</a>
+                        <a class="nav-link " href="index.html">IDE</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contests.html">Contests</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span id="userId"> <%= user %></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                          <li><a class="dropdown-item" href="/logout" id="signOutBtn">Sign-Out</a></li>
+                        </ul>
+                      </li>
                 </ul>
             </div>
         </div>
@@ -41,8 +52,8 @@
             <section class="col-lg-6 text-center">
                 <!-- <div style="padding: 30px 20px 15px 29px"  align="justify" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate accusamus dolorum explicabo, quisquam autem alias aliquid molestias iusto vel consequatur veniam temporibus sapiente eius expedita dolorem minima provident aliquam corrupti.</div> -->
                 <div class="text-start p-5">
-                    <h3>Simple Factorial</h3>
-                    <h6>ID: #<span id="quesId">1</span>_maths</h6>
+                    <h2>Simple Factorial</h2>
+                    <!-- <h6>ID: #<span id="quesId">1</span>_maths</h6> -->
                     <div><code>Easy</code></div>
                     <br>
                     We all learned how to find factorial in school, applying the same mathematical knowlege and coding
@@ -83,23 +94,23 @@
                         </svg>
                     </div>
 
-                    <label for="languages">
-                    ;      Languages : &nbsp;
-                    </label>
-                    &nbsp;
-                    <select id="languages" class="languages" name="languages" onchange="changeLanguage()">
+                    <label for="languages" style="font-weight: bold;">
+                        Language :
+                      </label>
+                      &nbsp;
+                      <select id="languages" class="languages" name ="languages" onchange="changeLanguage()">
                         <option value="c"> C </option>
                         <option value="cpp"> C++ </option>
+                        <option value="java"> Java </option>  
                         <option value="python"> Python </option>
-                        <option value="java"> Java </option>
-                    </select>
-                    &nbsp;&nbsp;
+                      </select>
+                      &nbsp;&nbsp;
 
                 </div>
                 <div class="editor" id="editor"></div>
 
                 <div class="button-container">
-                    <span class="text_output" id="text_output">OUTPUT:</span>
+                    <span class="text_output" id="text_output">OUTPUT :</span>
                     <span>
                         <!-- <button class="btn btn-secondary submit_btn" onclick="clearTerminal()">Clear</button> -->
                         <button class="btn btn-primary submit_btn" onclick="customInput()">Custom Input</button>

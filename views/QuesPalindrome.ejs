@@ -29,11 +29,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">IDE</a>
+                        <a class="nav-link" aria-current="page" href="home.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contests.html">Contests</a>
+                        <a class="nav-link " href="index.html">IDE</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contests.html">Contests</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span id="userId"> <%= user %></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                          <li><a class="dropdown-item" href="/logout" id="signOutBtn">Sign-Out</a></li>
+                        </ul>
+                      </li>
                 </ul>
             </div>
         </div>
@@ -43,8 +54,8 @@
         <div class="row">
             <section class="col-lg-6 text-center">
                 <div class="text-start p-5">
-                    <h3>Palindrome Check</h3>
-                    <h6>ID: #<span id="quesId">2</span>_strings</h6>
+                    <h2>Palindrome Check</h2>
+                    <!-- <h6>ID: #<span id="quesId">2</span>_strings</h6> -->
                     <div><code>Easy</code></div>
                     <br>
                     Write a program to check if a given string is a palindrome or not. A palindrome is a string that reads the same backwards as forwards.
@@ -55,8 +66,11 @@
                     is a palindrome because it reads the same backwards as forwards.
                     </code></p>
                     <p>Now make a program that takes a string as input and returns whether or not it is a palindrome.</p>
-                    <p>Sample input : <code>'radar'</code><br>
+                    <p>Sample input : <code>radar</code><br>
                     Expected output : <code>true</code>
+                    </p>
+                    <p>Sample input : <code>okay</code><br>
+                        Expected output : <code>false</code>
                     </p>
                     <p>Tags : Strings</p>
                 </div>
@@ -83,23 +97,23 @@
                         </svg>
                     </div>
 
-                    <label for="languages">
-                        Languages : &nbsp;
-                    </label>
-                    &nbsp;
-                    <select id="languages" class="languages" name="languages" onchange="changeLanguage()">
+                    <label for="languages" style="font-weight: bold;">
+                        Language :
+                      </label>
+                      &nbsp;
+                      <select id="languages" class="languages" name ="languages" onchange="changeLanguage()">
                         <option value="c"> C </option>
                         <option value="cpp"> C++ </option>
-                        <option value="python"> Python </option>
-                        <option value="java"> Java </option>
-                    </select>
-                    &nbsp;&nbsp;
+                        <option value="java"> Java </option>  
+                          <option value="python"> Python </option>
+                      </select>
+                      &nbsp;&nbsp;
 
                 </div>
                 <div class="editor" id="editor"></div>
 
                 <div class="button-container">
-                    <span class="text_output" id="text_output">OUTPUT:</span>
+                    <span class="text_output" id="text_output" >OUTPUT :</span>
                     <span>
                         <!-- <button class="btn btn-secondary submit_btn" onclick="clearTerminal()">Clear</button> -->
                         <button class="btn btn-primary submit_btn" onclick="customInput()">Custom Input</button>

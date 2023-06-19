@@ -11,13 +11,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
-
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/logo.png" width="45px"
+      <a class="navbar-brand" href="home.html">&nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/logo.png" width="45px"
           alt="logo">&nbsp;&nbsp;</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index.html">IDE</a>
@@ -34,9 +37,16 @@
           <li class="nav-item">
             <a class="nav-link" href="contests.html">Contests</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="signOut(event)">Sign-Out</a>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="userId"> <%= user %></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="/logout" id="signOutBtn">Sign-Out</a></li>
+            </ul>
           </li>
+
         </ul>
       </div>
     </div>
@@ -58,7 +68,9 @@
             ignite your creativity, and embark on an exciting coding adventure. Are you ready to level up your coding
             game? Let's dive in!
           </p>
-          <a href="index.html" class="btn-OJorange">Get Started 👀</a>
+          <!-- <a href="index.html" class="btn-OJorange">Get Started 👀</a> -->
+          <a href="#" class="btn-OJorange" onclick="scrollDown()">Get Started 👀</a>
+
         </div>
         <div class="col-md-6">
           <img src="images/OJ_home1.png" alt="GNDEC+OnlineJudge" class="img-fluid">
@@ -109,21 +121,16 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-4FR1hP7x45qf5U5LgmEmO8t+EVd4u0wpQ8b7yJ0Sf+5RUr7F+qhHd6bmQhTgCzhe"
-    crossorigin="anonymous"></script>
-    <script>
-      function signOut(event) {
-      event.preventDefault(); // Prevent the default link behavior
-      
-      // Remove cookies or perform signout logic here
-      // Example: Remove a cookie named "session_token"
-      document.cookie = "session_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.example.com;";
-      
-      // Redirect to signout page or desired destination
-      window.location.href = "login.html";
-      }
-    </script>
+  
+  
+  <script>
+  function scrollDown() {
+    window.scrollBy({
+      top: window.innerHeight,
+      behavior: 'smooth' 
+    });
+  }
+  </script>
 </body>
 
 </html>
