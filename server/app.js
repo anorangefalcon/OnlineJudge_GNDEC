@@ -19,7 +19,7 @@ const connection = mysql.createConnection({
   user: 'root',
   // password: {demo},
   // database: {demo},
-     
+  password: '',
   database: 'onlinejudge',
   insecureAuth: true,
   authPlugins: {
