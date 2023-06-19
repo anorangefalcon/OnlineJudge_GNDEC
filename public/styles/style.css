@@ -1,83 +1,96 @@
-*{margin: 0; padding: 0; box-sizing: border-box;}
-
-
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .dark.body {
   --accent-color: #D0D066;
   --background-color: white;
-  --text-color: rgb(39, 40, 35) ;
+  --text-color: rgb(39, 40, 35);
 }
-body{
-    min-height: 100vh;
+
+body {
+  min-height: 100vh;
 }
 
 .navbar {
-    background-color: black;
-    font-weight: bold;
-    font-family: 'ubuntu', sans-serif;
+  background-color: black;
+  font-weight: bold;
+  font-family: 'ubuntu', sans-serif;
 }
 
 .control-panel {
   font-size: 15px;
   word-wrap: break-word;
-   background: #ffbd59;
-   text-align: right;
-   padding: 5px;
-   /* height: 3%; */
-   width: 100%; 
-   font-family: sans-serif;
- }
- 
- .languages {
- 
-   background: white;
-   border: 3px solid gray;
- }
+  background: #ffbd59;
+  text-align: right;
+  padding: 5px;
+  /* height: 3%; */
+  width: 100%;
+  font-family: sans-serif;
+}
 
-#editor { 
-    height: 500px; 
-    max-width: 100%;
-    font-size: 16px;
+.languages {
+
+  /* background: white; */
+  border: 3px solid #ffbd59;
+  /* border: 0.2px dotted #060606; */
+
+  padding: 5px;
+  font-size: 14px;
+
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  /* width: 200px; */
+}
+
+#editor {
+  height: 500px;
+  max-width: 100%;
+  font-size: 16px;
 }
 
 
-.ace_content{
-    word-wrap: break-word;
+.ace_content {
+  word-wrap: break-word;
 }
 
 .button-container {
-    display: flex;
-    flex-direction: row; 
-    justify-content: space-between;
-    padding: 6px; 
-    background: #ffbd59;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 6px;
+  background: #ffbd59;
 }
+
 .btn-OJorange {
-  display:flex;
-  color:#000000;
+  display: flex;
+  color: #000000;
   text-decoration: none;
   font-size: 20px;
-  justify-content:space-around;
-  padding: 9px; 
+  justify-content: space-around;
+  width: 640px;
+  padding: 9px;
   background: #ffbd59;
 }
 
 .btn {
-    background: #57a958;
-    color: white;
-    padding: 8px;
-    border: 0;
+  background: #57a958;
+  color: white;
+  padding: 8px;
+  border: 0;
 }
 
 .output {
-    color: white;
-    padding-top: 5px;
-    padding-left: 7px;
-    padding-right: 7px;
-    border: 2px solid #ffbd59;
-    background-color: rgb(39, 40, 35);
-    min-height: 168px;
+  color: white;
+  padding-top: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border: 2px solid #ffbd59;
+  background-color: rgb(39, 40, 35);
+  min-height: 168px;
 }
 
 .dark .output {
@@ -90,30 +103,29 @@ body{
   min-height: 168px;
 }
 
-.inputArea{
-    min-height: 154px;
-    width: 100%;
-    padding-top: 5px;
-    padding-left: 7px;
-    padding-right: 7px;
+.inputArea {
+  min-height: 154px;
+  width: 100%;
+  padding-top: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
-.submit_btn, .text_output{
-    margin: 0 10px;
-}
-.text_output{
-    margin-top: 5px;
-    font-size: 18px;
-    color: rgb(39, 40, 35);
+.submit_btn,
+.text_output {
+  margin: 0 10px;
 }
 
-.theme-toggle-button {
+.text_output {
+  margin-top: 5px;
+  font-size: 18px;
+  color: rgb(39, 40, 35);
+}
+
+
+ .theme-toggle-button {
   background-color: var(--accent-color);
   color: var(--button-text-color);
-
-  
-  
-  
   /* position:sticky; */
   left: 83%;
   top: -.5cm;
@@ -123,14 +135,15 @@ body{
   justify-content: center;
   align-items: center;
   border-radius: .1em;
-  border: .1em solid gray;
-  background-color: lightgrey;
+  border: .1em solid #ffbd59;
+  background-color: #ffbd59;
+  border-radius: 10px;
   outline: none;
   transition: var(--transition-delay);
   transform: scale(1);
- 
+} 
 
-}
+
 
 .theme-toggle-button .icon {
   margin-right: .1em;
@@ -158,12 +171,13 @@ body{
 
 .sun,
 .moon {
-position: absolute;
-transition: opacity, fill, var(--transition-delay);
-width: 0px;
-height: 0px;
-fill: var(--accent-color);
+  position: absolute;
+  transition: opacity, fill, var(--transition-delay);
+  width: 0px;
+  height: 0px;
+  fill: var(--accent-color);
 }
+
 .sun {
   top: -.8cm;
   opacity: 1;
@@ -194,6 +208,7 @@ fill: var(--accent-color);
   margin-bottom: 30px;
   color: #ffbd59;
 }
+
 .hero-section h2 {
   font-size: 66px;
   margin-bottom: 0px;
